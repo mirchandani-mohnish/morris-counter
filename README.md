@@ -6,3 +6,5 @@ Algorithms:
   * `Morris(a) Counter` - :heavy_check_mark:
   * `Morris+ Counter` - :clock3:
 
+![Morris(a) Counter](/plots/morris-a.png)
+
