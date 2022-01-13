@@ -1,0 +1,52 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.axis import Axis
+
+from morriscounter import MorrisCounter
+
+
+def test(counter: MorrisCounter, n: int, axis: Axis) -> None:
+  uppers, lowers, estimates, actuals = [], [], [], []
+  for N in range(1, n+1):
+    counter.increment()
+    # assert (1-counter.epsilon)*N <= counter.count <= (1+counter.epsilon)*N
+    actual = N
+    estimate = counter.count
+    lower = (1-counter.epsilon)*N
+    upper = (1+counter.epsilon)*N
+
+    actuals.append(actual)
+    estimates.append(estimate)
+    lowers.append(lower)
+    uppers.append(upper)
+
+    # print(f"{actual=}, {estimate=:.8f} in [{lower:.8f}, {upper:.8f}]")
+
+  MARKER_SIZE=.01
+  LINE_WIDTH=.5
+  axis.plot(actuals, estimates, label="estimate", marker="o", color="green", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
+  axis.plot(actuals, lowers, label="lower bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
+  axis.plot(actuals, uppers, label="upper bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
+  axis.plot(actuals, actuals, label="actual", linestyle="dashed", color="grey", markersize=MARKER_SIZE, linewidth=LINE_WIDTH, alpha=0.3)
+  axis.set_title(rf"$\varepsilon={counter.epsilon:.3g}$, $\delta={counter.delta:.3g}$", fontsize=6, y=-0.2)
+  axis.axis('off')
+
+
+
+if __name__ == '__main__':
+  n = 10000
+  bins = 5
+  fig, axes = plt.subplots(bins, bins)
+  for r, accuracy in enumerate(np.linspace(.5, .95, bins)):
+    for c, max_failure_rate in enumerate(np.linspace(0.05, .45, bins)):
+      print(f"{accuracy=}, {max_failure_rate=}")
+      counter = MorrisCounter(accuracy=accuracy, max_failure_rate=max_failure_rate)
+      test(counter, n=n, axis=axes[r][c])
+
+  fig.suptitle(f"Morris(a) Counter, {n=}")
+  handles, labels = axes[-1][-1].get_legend_handles_labels()
+  fig.legend(handles, labels, loc='upper left', prop={'size': 6})
+  fig.savefig("plots/morris-a.png", dpi=500)
+
+
+
