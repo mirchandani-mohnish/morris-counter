@@ -4,7 +4,15 @@ from matplotlib.axis import Axis
 
 from morriscounter import MorrisCounter
 
+'''
+The following test file is only responsible for creating the graphs which are found
+We define "uppers, lowers, estimates, actuals" and keep appending the respective values of the counter 
+upon each loop, into the respective arrays. 
 
+This gets an array for each field. 
+
+This is then consecutively plotted on the chart. 
+'''
 def test(counter: MorrisCounter, n: int, axis: Axis) -> None:
   uppers, lowers, estimates, actuals = [], [], [], []
   for N in range(1, n+1):
@@ -22,6 +30,7 @@ def test(counter: MorrisCounter, n: int, axis: Axis) -> None:
 
     # print(f"{actual=}, {estimate=:.8f} in [{lower:.8f}, {upper:.8f}]")
 
+  # The following portion is responsible for the creation of the respective graphs we see.
   MARKER_SIZE=.01
   LINE_WIDTH=.5
   axis.plot(actuals, estimates, label="estimate", marker="o", color="green", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
@@ -34,14 +43,21 @@ def test(counter: MorrisCounter, n: int, axis: Axis) -> None:
 
 
 if __name__ == '__main__':
-  n = 10000
-  bins = 5
+  n = 100
+  bins = 10
   fig, axes = plt.subplots(bins, bins)
-  for r, accuracy in enumerate(np.linspace(.5, .95, bins)):
-    for c, max_failure_rate in enumerate(np.linspace(0.05, .45, bins)):
-      print(f"{accuracy=}, {max_failure_rate=}")
-      counter = MorrisCounter(accuracy=accuracy, max_failure_rate=max_failure_rate)
-      test(counter, n=n, axis=axes[r][c])
+  print(np.linspace(.5, .95, bins))
+  for r, accuracy in enumerate(np.linspace(.5, .95, bins)): #np.linspace creates an array of numbers between 0.5 and 0.95 where the array length is "bins" and the array is evenly distributed
+    for c, max_failure_rate in enumerate(np.linspace(0.05, .45, bins)): # r and c work with the number of elements in the respective arrays
+      print(f"{accuracy=}, {max_failure_rate=}") 
+      counter = MorrisCounter(accuracy=accuracy, max_failure_rate=max_failure_rate) # The morris counter is called here 
+      test(counter, n=n, axis=axes[r][c]) 
+      # The test function is called on every respective accuracy and Failiure rate. 
+
+
+
+  # counter = MorrisCounter(accuracy=accuracy, max_failure_rate=max_failure_rate)
+  # test(counter, n=n, axis=axes[r][c])
 
   fig.suptitle(f"Morris(a) Counter, {n=}")
   handles, labels = axes[-1][-1].get_legend_handles_labels()
@@ -49,4 +65,11 @@ if __name__ == '__main__':
   fig.savefig("plots/morris-a.png", dpi=500)
 
 
+
+
+'''
+Working of the Code 
+
+
+'''
 

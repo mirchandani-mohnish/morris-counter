@@ -32,6 +32,9 @@ class MorrisCounter:
     self.rng = rng or Random()
     self.X = 0
 
+
+    print("epsilon: ", self.epsilon, "    delta", self.delta, "    a", self.a)
+
   def increment(self) -> None:
     if self._should_increment:
       self.X += 1
@@ -47,3 +50,14 @@ class MorrisCounter:
   @property
   def _should_increment(self) -> bool:
     return self.rng.uniform(0, 1) <= self._increment_probability
+
+
+
+
+
+"""
+Working of the Current Morris Counter 
+- 
+
+
+"""
