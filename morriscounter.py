@@ -42,22 +42,45 @@ class MorrisCounter:
   @property
   def count(self) -> float:
     return self.a ** (-1) * ((1 + self.a) ** self.X - 1)
+  '''
+  Count 
+
+  '''
+
 
   @property
   def _increment_probability(self) -> float:
     return (1 + self.a) ** (-self.X)
 
+  '''
+  
+  '''
   @property
   def _should_increment(self) -> bool:
     return self.rng.uniform(0, 1) <= self._increment_probability
+    # The uniform function generates a uniform probability distribution i.e. any value between 0 and 1 is equally likely
+
+
+  '''
+  Working of the Current Morris Counter
+    When the count function is called, it returns the count based on the values of x and a;
+
+    The increment function acts as a trigger for the two other functions, namely "should_increment" and "increment_probability"
+    When you call the increment function -> it checks whether it should increment. 
+    The "should_increment" selects a value based on a uniform distribution 
+    The "increment_probability" function gives the value of the probability #########################
+    After the comparison , a bool is returned for whether the counter should increment or not
+
+  '''
 
 
 
 
-
-"""
-Working of the Current Morris Counter 
-- 
-
-
-"""
+  '''
+  Todo: 
+  Add an example 
+  Format the comments
+  
+  
+  
+  '''

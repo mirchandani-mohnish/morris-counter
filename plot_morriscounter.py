@@ -56,9 +56,6 @@ if __name__ == '__main__':
 
 
 
-  # counter = MorrisCounter(accuracy=accuracy, max_failure_rate=max_failure_rate)
-  # test(counter, n=n, axis=axes[r][c])
-
   fig.suptitle(f"Morris(a) Counter, {n=}")
   handles, labels = axes[-1][-1].get_legend_handles_labels()
   fig.legend(handles, labels, loc='upper left', prop={'size': 6})
@@ -68,8 +65,13 @@ if __name__ == '__main__':
 
 
 '''
-Working of the Code 
+Main function 
+The main function is responsible for taking the respective inputs namely; 
+accuracy: 
+max_failure_rate:
+bins:
 
-
+The function then loops over each of these respective value pairs and creates a graph for them. 
+The number of such values is defined by the number of bins we create and we then see (bins)^2 graphs for the corresponding values 
 '''
 
