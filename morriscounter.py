@@ -17,11 +17,11 @@ from typing import Optional
 
   Analysis
     Group: 2
-      * Priya Jani AU2040004
-      * Yansi Memdani AU2040028
       * Abhishu Oza AU2040027
-      * Priyanshu Pathak AU2040241
       * Mohnish Mirchandani AU2040110
+      * Priya Jani AU2040004
+      * Priyanshu Pathak AU2040241
+      * Yansi Memdani AU2040028
   """
 
 '''
@@ -32,11 +32,7 @@ from typing import Optional
       + X:- Number of Counts in the Counter
       + epsilon:- The Maximum possible error
       + delta:- The Failure Rate
-<<<<<<< HEAD
       + a:- 2*(error^2)*(failure_rate)
-=======
-      + a:- 
->>>>>>> ab05eb14a8536505b33c2db5f3246becf331bcab
       + rng:- A Random Number
 
     - Functions: 
