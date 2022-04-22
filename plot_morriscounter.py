@@ -52,7 +52,10 @@ def test(counter: MorrisCounter, n: int, graphNo:int) -> None:
   plt.plot(actuals, lowers, label="lower bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
   plt.plot(actuals, uppers, label="upper bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
   plt.plot(actuals, actuals, label="actual", linestyle="dashed", color="grey", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
+  plt.title("\u03B4 = " + str(counter.delta) + "  \u03B5 = "+ str(counter.epsilon) )
+  plt.legend()
   plt.savefig('plots/fig'+str(graphNo)+'.png', dpi=1000)
+  
   plt.cla()
   
 
@@ -75,8 +78,8 @@ def test(counter: MorrisCounter, n: int, graphNo:int) -> None:
 
 
 if __name__ == '__main__':
-  n = 100
-  bins = 4
+  n = 10000
+  bins = 3
   graphNo = 1
   print(np.linspace(.5, .95, bins))
   for r, accuracy in enumerate(np.linspace(.5, .95, bins)): # Create an array of evenly distributed numbers between 0.5 and 0.95 
