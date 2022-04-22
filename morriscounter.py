@@ -32,7 +32,11 @@ from typing import Optional
       + X:- Number of Counts in the Counter
       + epsilon:- The Maximum possible error
       + delta:- The Failure Rate
+<<<<<<< HEAD
       + a:- 2*(error^2)*(failure_rate)
+=======
+      + a:- 
+>>>>>>> ab05eb14a8536505b33c2db5f3246becf331bcab
       + rng:- A Random Number
 
     - Functions: 
