@@ -5,7 +5,8 @@ from typing import Optional
 ~~~An approximate counter~~~
 
   This is the Morris(a) counter.
-
+  
+  This is forked from https://github.com/davidb2/morris-counter and is a more refined approach towards the Morris counter with tighter bounds
   Let:
     * e = accuracy
     * d = max_failure_rate

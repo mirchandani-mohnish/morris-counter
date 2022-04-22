@@ -44,7 +44,6 @@ def test(counter: MorrisCounter, n: int, graphNo:int) -> None:
     lowers.append(lower)
     uppers.append(upper)
 
-    # print(f"{actual=}, {estimate=:.8f} in [{lower:.8f}, {upper:.8f}]")
 
   # Create the graphs based on the four arrays. 
   MARKER_SIZE=.01
@@ -52,8 +51,7 @@ def test(counter: MorrisCounter, n: int, graphNo:int) -> None:
   plt.plot(actuals, estimates, label="estimate", marker="o", color="green", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
   plt.plot(actuals, lowers, label="lower bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
   plt.plot(actuals, uppers, label="upper bound", color="red", linestyle="dashed", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
-  plt.plot(actuals, actuals, label="actual", linestyle="dashed", color="grey", markersize=MARKER_SIZE, linewidth=LINE_WIDTH, alpha=0.3)
-  # plt.show()
+  plt.plot(actuals, actuals, label="actual", linestyle="dashed", color="grey", markersize=MARKER_SIZE, linewidth=LINE_WIDTH)
   plt.savefig('plots/fig'+str(graphNo)+'.png', dpi=1000)
   plt.cla()
   
@@ -80,7 +78,6 @@ if __name__ == '__main__':
   n = 100
   bins = 4
   graphNo = 1
-  # fig, axes = plt.subplots(bins, bins)
   print(np.linspace(.5, .95, bins))
   for r, accuracy in enumerate(np.linspace(.5, .95, bins)): # Create an array of evenly distributed numbers between 0.5 and 0.95 
     for c, max_failure_rate in enumerate(np.linspace(0.05, .45, bins)): 
